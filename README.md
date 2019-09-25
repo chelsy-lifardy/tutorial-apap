@@ -44,3 +44,35 @@ pada lab tutorial ini, saya belajar mengenai penggunaan git, membuat architectur
 - [ ] Kapan menggunakan pathVariable dan requestParam
 - [ ] Belum memahami flow dari Springboot
 - [ ] Belum menghafal framework yang tersedia di dalam Spring
+
+## Tutorial 2
+
+### Pertanyaan 1: Cobalah untuk menambahkan sebuah store dengan mengakses link berikut: http://localhost:8080/store/add?idStore=1&nama=shapipi&keterangan=Toko%20Elektronik&followers=100
+
+#### Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
+
+Pada tahap ini, saya belum memiliki view sehingga ketika saya memanggil URL tersebut, URL tersebut tidak ada. Sehingga, muncul error pada page tersebut.
+
+<br>
+
+### Pertanyaan 2: View template dengan nama “add-store.html” telah berhasil kamu buat. Jalankan programmu dan akses kembali link berikut: http://localhost:8080/store/add?idStore=1&nama=shapipi&keterangan=Toko%20Elektronik
+
+#### Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
+
+Terjadi error dengan status 400 (type=Bad Request, status=400). Mengapa terjadi? karena terdapat kekurangan parameter yaitu parameter followers. Hal tersebut error karena ketika membuat model, parameter tersebut disetting required
+
+<br>
+
+### Pertanyaan 3: : Jika Papa APAP ingin melihat store shapee, link apa yang harus diakses?
+
+dapat mengakses link berikut http://localhost:8080/restoran/view-all
+
+<br>
+
+### Pertanyaan 4: : Tambahkan 1 contoh store lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/store/view-all,
+
+#### apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
+
+Daftar list seluruh store beserta dengan ID Store, Nama Store, Keterangan, dan Followers
+
+<a href="https://ibb.co/j3TnZ8S"><img src="https://i.ibb.co/VMtfpLs/Screen-Shot-2019-09-18-at-17-32-38.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>

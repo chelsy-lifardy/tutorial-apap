@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>View All Store</title>
+</head>
+
+<body>
+<h4 th:text="${informasi}"> </h4>
+<h2> Daftar Seluruh Store</h2>
+<div th:each="store : ${storeList}">
+<h3 th:text="'ID Store '+ ${store.id}"> </h3>
+<h3 th:text="'Nama Store '+ ${store.nama}"> </h3>
+<h3 th:text="'Keterangan '+ ${store.keterangan}"> </h3>
+<h3 th:text="'Followers '+ ${store.followers}"> </h3>
+</div>
+</body>
+
+</html>
