@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <title>Change Data Product</title>
+</head>
+<body>
+<h3> Change Data Product </h3>
+<form th:action="@{/product/change/{productId}(productId=${product.id})}" th:object="${product}" method="POST">
+    <input type="hidden" th:field="${product.id}" />
+    Nama Product: <br>
+    <input type = "text" name="nama" th:value="${product.nama}" />
+    <br>
+    Harga: <br>
+    <input type="number" name="harga" th:value="${product.harga}"/>
+    <br>
+    Stok: <br>
+    <input type="number" name="stok" th:value="${product.stok}"/>
+    <br>
+    Deskripsi: <br>
+    <input type="text" name="deskripsi" th:value="${product.deskripsi}"/>
+    <br>
+
+    <br><br>
+    <button type="submit"> Submit </button>
+</form>
+</body>
+
+</html>

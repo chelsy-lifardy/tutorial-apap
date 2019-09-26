@@ -1,15 +1,18 @@
 package apap.tutorial.shapee.service;
-import java.util.List;
+
 import apap.tutorial.shapee.model.StoreModel;
 
-public interface StoreService {
+import java.util.List;
+import java.util.Optional;
 
-    //menambah store
+public interface StoreService {
     void addStore(StoreModel store);
 
-    //mendapatkan data semua store yang tersimpan
     List<StoreModel> getStoreList();
 
-    //mendapatkan data store berdasarkan id
-    StoreModel getStoreById(String idStore);
+    Optional<StoreModel> getStoreById(Long id);
+
+    StoreModel changeStore(StoreModel storeModel);
+
+    void deleteStoreById(Long idStore);
 }

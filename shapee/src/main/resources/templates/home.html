@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<h2> Selamat datang di SHAPEE! </h2>
+<h3> Tambah Store</h3>
+<td> <a th:href = "@{/store/add}"> Tambah Store </a> </td>
+
+
+<h3> Cari Store Berdasarkan ID </h3>
+<form th:action="@{/store/view}" method="GET">
+    Id Store: <br>
+    <input type="text" name="idStore"  />
+    <button type="submit"> Cari </button>
+</form>
+
+</br>
+<td>  <a  th:href="@{/store/view-all}"> View All </a> </td>
+
+</body>
+</html>

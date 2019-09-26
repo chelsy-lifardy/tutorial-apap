@@ -6,12 +6,38 @@
 </head>
 
 <body>
-<h4 th:text="${informasi}"> </h4>
 <h2> Informasi Store </h2>
-<h3 th:text="'ID Store '+ ${store.id}"> </h3>
-<h3 th:text="'Nama Store '+ ${store.nama}"> </h3>
-<h3 th:text="'Keterangan '+ ${store.keterangan}"> </h3>
-<h3 th:text="'Followers '+ ${store.followers}"> </h3>
+<td> <a  th:href="@{/}"> Back to Home </a> </td> <br>
+<td>  <a  th:href="@{/store/view-all}"> View All Store </a> </td>
+
+<h4 style="color:darkred" th:text="${informasi}"> </h4>
+
+<h3 th:text="'ID Store: '+ ${store.id}"> </h3>
+<h3 th:text="'Nama Store: '+ ${store.nama}"> </h3>
+<h3 th:text="'Keterangan: '+ ${store.keterangan}"> </h3>
+<h3 th:text="'Followers: '+ ${store.followers}"> </h3>
+
+<td> <a th:href="@{/store/change/} + ${store.id}"> Change Store </a> </td> <br>
+<td> <a th:href="@{/store/delete/} + ${store.id}"> Delete Store </a></td>
+<br>
+<br>
+<h2 th:text="'Daftar Produk: Toko '+ ${store.nama}"> </h2>
+<td> <a th:href="@{/product/add/} + ${store.id}"> Add Product </a></td>
+<br>
+
+<div th:each="product:  ${productList}">
+    <h3 th:text="'ID Product: '+ ${product.id}"> </h3>
+    <h3 th:text="'Nama: '+ ${product.nama}"> </h3>
+    <h3 th:text="'Harga: '+ ${product.harga}"> </h3>
+    <h3 th:text="'Deskripsi: '+ ${product.deskripsi}"> </h3>
+    <h3 th:text="'Stok: '+ ${product.stok}"> </h3>
+    <td> <a th:href="@{/product/change/} + ${product.id}"> Change Product </a></td> <br>
+    <td> <a th:href="@{/product/delete/} + ${product.id}"> Delete Product </a></td>
+    </br>
+    </br>
+</div>
+
+    </br>
 </body>
 
 </html>
