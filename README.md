@@ -82,7 +82,8 @@ Daftar list seluruh store beserta dengan ID Store, Nama Store, Keterangan, dan F
 1. Pada class ProductDb, terdapat method findByStoreModelId, apakah kegunaan dari method tersebut?
    - findByStoreModelId pada ProductDb merupakan sebuah interface dari JPARepository untuk memberi implementasi untuk ProductService agar dapat melakukan query/pengambilan Store yang sesuai dengan Id
 2. Pada class StoreController, jelaskan perbedaan method addStoreFormPage dan
-   addStoreSubmit? - `addStoreFormPage` merupakan fungsi untuk memberikan halaman Form untuk menginput Store dari form, ini ditandai oleh request GET. `addStoreSubmit` merupakan fungsi untuk menyimpan store pada database, ini ditandai oleh request POST.
+   addStoreSubmit?
+   - `addStoreFormPage` merupakan fungsi untuk memberikan halaman Form untuk menginput Store dari form, ini ditandai oleh request GET. `addStoreSubmit` merupakan fungsi untuk menyimpan store pada database, ini ditandai oleh request POST.
 3. Jelaskan kegunaan dari JPA Repository
    - JPA Repository memberikan sebuah interface untuk melakukan mapping antara objek Java dengan model pada Database. Hal ini dikenal dengan ORM (Object Relational Mapping)
 4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara StoreModel dan
