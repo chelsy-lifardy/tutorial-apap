@@ -76,3 +76,31 @@ dapat mengakses link berikut http://localhost:8080/restoran/view-all
 Daftar list seluruh store beserta dengan ID Store, Nama Store, Keterangan, dan Followers
 
 <a href="https://ibb.co/j3TnZ8S"><img src="https://i.ibb.co/VMtfpLs/Screen-Shot-2019-09-18-at-17-32-38.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
+
+## Tutorial 3
+
+1. Pada class ProductDb, terdapat method findByStoreModelId, apakah kegunaan dari method tersebut?
+   - findByStoreModelId pada ProductDb merupakan sebuah interface dari JPARepository untuk memberi implementasi untuk ProductService agar dapat melakukan query/pengambilan Store yang sesuai dengan Id
+2. Pada class StoreController, jelaskan perbedaan method addStoreFormPage dan
+   addStoreSubmit? - `addStoreFormPage` merupakan fungsi untuk memberikan halaman Form untuk menginput Store dari form, ini ditandai oleh request GET. `addStoreSubmit` merupakan fungsi untuk menyimpan store pada database, ini ditandai oleh request POST.
+3. Jelaskan kegunaan dari JPA Repository
+   - JPA Repository memberikan sebuah interface untuk melakukan mapping antara objek Java dengan model pada Database. Hal ini dikenal dengan ORM (Object Relational Mapping)
+4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara StoreModel dan
+   ProductModel dibuat? - Relasi antara StoreModel dan ProductModel terletak pada cuplikan kode berikut.
+
+   ```
+   @OneToMany(mappedBy = "storeModel", fetch = FetchType.LAZY, cascade = CascadeType.ALL) private List<ProductModel> listProduct;
+   ```
+
+   - Pada cuplikan kode pertama, model Store memiliki relasi oneToMany dengan model Product, yang menyatakan sebuah Store memiliki banyak Product. Relase oneToMany yang diberikan bersifat fetch lazy dan cascade all. Fetch lazy menyatakan bahwa inisialisasi model product tidak langsung dilakukan / disimpan di memory dan akan dilakukan ketika melalui getter. Cascade all berarti semua perubahan yang dilakukan pada store juga akan diubah di product
+
+   ```
+   @ManyToOne(fetch = FetchType.EAGER, optional = false) @JoinColumn(name="storeid", referencedColumnName = "id", nullable = false) @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore private StoreModel storeModel;
+   ```
+
+   - Sedangkan pada cuplikan kode kedua, model Product memiliki relasi manyToOne dengan model Store, yang meyatakan sebuah Product dimiliki oleh banyak Store. `@JoinColumn` akan memberikan kolom storeid pada model product sebagai foreign key. `@JsonIgnore` akan memberikan penanda bahwa atribut ini tidak diikutsertakan ketika dilakukan parsign JSON.
+
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER
+   - FetchType.LAZY: Pengambilan model relasi dari sebuah model dilakukan ketika melakukan pemanggilan fungsi getter dari atribut relasi tersebut.
+   - FetchType.EAGER: Pengambilan model relasi dari sebuah model dilakukan bersamaan ketika mengambil model tersebut dari database.
+   - CascadeType.ALL: Semua operasi yang dilakukan oleh model akan mempengaruhi model relasinya termasuk PERSIST, REMOVE, REFRESH, MERGE, dan DETACH
