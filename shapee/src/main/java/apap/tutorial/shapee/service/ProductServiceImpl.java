@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,5 +48,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteProductById(Long storeId) {
         productDb.deleteById(storeId);
+    }
+
+    @Override
+    public List<ProductModel> getListProductOrderByHargaAsc(Long storeId) {
+        return productDb.findProductModelByStoreModelIdOrderByHargaAsc(storeId);
     }
 }

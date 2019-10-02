@@ -6,7 +6,7 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
+<nav th:replace="fragments/fragment :: navbar(page = ${page})"></nav>
 <h3> Change Data Store </h3>
 <form th:action="@{/store/change/{storeId}(storeId=${store.id})}" th:object="${store}" method="POST">
     <input type="hidden" th:field="${store.id}" />

@@ -6,7 +6,7 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
+<nav th:replace="fragments/fragment :: navbar"(page = ${page})></nav>
 <h3> Change Data Product </h3>
 <form th:action="@{/product/change/{productId}(productId=${product.id})}" th:object="${product}" method="POST">
     <input type="hidden" th:field="${product.id}" />

@@ -27,6 +27,7 @@ public class ProductController {
         product.setStoreModel(store);
 
         model.addAttribute("product", product);
+        model.addAttribute("page", "Add Product");
 
         return "form-add-product";
     }
@@ -35,12 +36,14 @@ public class ProductController {
     private String addProductSubmit(@ModelAttribute ProductModel productModel, Model model) {
         productService.addProduct(productModel);
         model.addAttribute("nama", productModel.getNama());
+        model.addAttribute("page", "Add Product");
 
         return "add-product";
     }
 
     @RequestMapping(value = {"product/change", "product/change/{idProduct}"}, method = RequestMethod.GET)
     public String changeStoreFormPage(@PathVariable(required = false) Long idProduct, Model model) {
+        model.addAttribute("page", "Change Product");
         if (idProduct == null || !isProductExist(idProduct)) {
             model.addAttribute("informasi", "Produk tidak ditemukan!");
             return "error-not-found";
@@ -55,20 +58,18 @@ public class ProductController {
     public String changeStoreFormSubmit(@PathVariable Long idProduct, @ModelAttribute ProductModel product, Model model) {
         ProductModel newProductData = productService.changeProduct(product);
         model.addAttribute("product", newProductData);
+        model.addAttribute("page", "Change Product");
 
         return "change-product";
     }
 
-    @RequestMapping(value = {"product/delete", "product/delete/{idProduct}"}, method = RequestMethod.GET)
-    public String deleteProduct(@PathVariable (required = false) Long idProduct, Model model) {
-        if (idProduct == null || !isProductExist(idProduct)) {
-            model.addAttribute("informasi", "Produk tidak ditemukan!");
-            return "error-not-found";
+    @RequestMapping(value = "product/delete", method = RequestMethod.POST)
+    public String deleteProduct(@ModelAttribute StoreModel store, Model model) {
+        for (ProductModel product: store.getListProduct()) {
+            productService.deleteProductById(product.getId());
         }
-        ProductModel existingProduct = productService.getProductById(idProduct).get();
-        model.addAttribute("product", existingProduct);
-
-        productService.deleteProductById(idProduct);
+        model.addAttribute("informasi", "Produk berhasil dihapus");
+        model.addAttribute("page", "Delete Product");
         return "delete-product";
     }
 

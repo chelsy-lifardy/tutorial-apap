@@ -7,7 +7,7 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <nav th:replace="fragments/fragment :: navbar(page = ${page})"></nav>
 
     <div class="container-fluid">
         <h2> Selamat datang di SHAPEE! </h2>
@@ -36,7 +36,7 @@
                     <div class="card-body">
                         <form th:action="@{/store/view}" method="GET">
                             <label for="idStore"> Id Store </label>
-                            <input type="text" name="idStore" class="form-control"/>
+                            <input type="text" name="idStore" id="idStore" class="form-control"/>
                             <br>
                             <button class="btn btn-primary" type="submit"> Cari </button>
                         </form>

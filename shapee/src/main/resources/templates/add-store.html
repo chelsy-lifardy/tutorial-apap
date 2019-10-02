@@ -7,7 +7,7 @@
         <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     </head>
     <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <nav th:replace="fragments/fragment :: navbar(page = ${page})"></nav>
         <h2 th:text="'Store '+ ${nama} + ' berhasil ditambahkan'"></h2>
         <td> <a  th:href="@{/}"> Back to Home </a> </td> <br>
         <td>  <a  th:href="@{/store/view-all}"> View All Store </a> </td>

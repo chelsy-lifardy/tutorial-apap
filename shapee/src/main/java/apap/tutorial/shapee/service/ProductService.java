@@ -1,5 +1,6 @@
 package apap.tutorial.shapee.service;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,4 +16,6 @@ public interface ProductService {
     ProductModel changeProduct(ProductModel product);
 
     void deleteProductById(Long productId);
+
+    List<ProductModel> getListProductOrderByHargaAsc(Long storeId);
 }

@@ -23,12 +23,14 @@ public class StoreController {
     private ProductService productService;
 
     @RequestMapping("/")
-    private String home() {
+    private String home(Model model) {
+        model.addAttribute("page", "Home");
         return "home";
     }
 
     @RequestMapping(value = "/store/add", method = RequestMethod.GET)
     public String addStoreFormPage(Model model) {
+        model.addAttribute("page", "Add Store");
         StoreModel newStore = new StoreModel();
         newStore.setFollowers(0);
         model.addAttribute("store", newStore);
@@ -37,23 +39,28 @@ public class StoreController {
 
     @RequestMapping(value = "/store/add", method = RequestMethod.POST)
     private String addStoreSubmit(@ModelAttribute StoreModel store, Model model) {
+        model.addAttribute("page", "Add Store");
         storeService.addStore(store);
         model.addAttribute("nama", store.getNama());
         return "add-store";
     }
 
-    @RequestMapping("/store/view")
-    public String view(@RequestParam(value = "idStore", required = false) Long idStore, Model model) {
+    @RequestMapping(value="/store/view", method = RequestMethod.GET)
+    public String view(
+            @RequestParam(value = "idStore", required = false) Long idStore, Model model) {
+
+        model.addAttribute("page", "View Store");
         if (idStore == null || !isStoreExist(idStore)) {
             model.addAttribute("informasi", "Toko tidak ditemukan!");
             return "error-not-found";
         }
 
         StoreModel store = storeService.getStoreById(idStore).get();
-        model.addAttribute("store", store);
 
-        List<ProductModel> productList = productService.findAllProductByStoreId(store.getId());
-        model.addAttribute("productList", productList);
+        List<ProductModel> productList = productService.getListProductOrderByHargaAsc(idStore);
+        store.setListProduct(productList);
+
+        model.addAttribute("store", store);
 
         return "view-store";
     }
@@ -63,6 +70,7 @@ public class StoreController {
         List<StoreModel> storeList = storeService.getStoreList();
         storeList.sort(Comparator.comparing(StoreModel::getNama));
         model.addAttribute("storeList", storeList);
+        model.addAttribute("page", "View All Store");
 
         //return view template view-store
         return "view-all-store";
@@ -70,6 +78,7 @@ public class StoreController {
 
     @RequestMapping(value = {"store/change", "store/change/{idStore}"}, method = RequestMethod.GET)
     public String changeStoreFormPage(@PathVariable (required = false) Long idStore, Model model) {
+        model.addAttribute("page", "Change Store");
         if (idStore == null || !isStoreExist(idStore)) {
             model.addAttribute("informasi", "Toko tidak ditemukan!");
             return "error-not-found";
@@ -85,12 +94,14 @@ public class StoreController {
     public String changeStoreFormSubmit(@PathVariable Long idStore, @ModelAttribute StoreModel store, Model model) {
         StoreModel newStoreData = storeService.changeStore(store);
         model.addAttribute("store", newStoreData);
+        model.addAttribute("page", "Change Store");
 
         return "change-store";
     }
 
-    @RequestMapping(value = {"store/change","store/delete/{idStore}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"store/delete","store/delete/{idStore}"}, method = RequestMethod.GET)
     public String deleteStore(@PathVariable (required = false) Long idStore, Model model) {
+        model.addAttribute("page", "Delete Store");
         if (idStore == null || !isStoreExist(idStore)) {
             model.addAttribute("informasi", "Toko tidak ditemukan!");
             return "error-not-found";
