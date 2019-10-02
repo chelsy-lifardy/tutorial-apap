@@ -2,13 +2,13 @@
 <html xmlns:th = "http://www.thymeleaf.org">
 
 <head>
-    <title>404 Not Found</title>
+    <title>500 Internal Server Error</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 
 <body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
+<nav th:replace="fragments/fragment :: navbar(page = 'error')"></nav>
 <h2>Error Code: 500</h2>
 <h3>Internal Server Error</h3>
 </body>
