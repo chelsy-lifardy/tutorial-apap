@@ -3,9 +3,11 @@
 
 <head>
     <title>Change Store</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-
 <body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
 <h2 th:text="'Store '+ ${store.nama} + ' berhasil diperbarui'"></h2>
 <td> <a  th:href="@{/}"> Back to Home </a> </td> <br>
 <td>  <a  th:href="@{/store/view-all}"> View All Store </a> </td>

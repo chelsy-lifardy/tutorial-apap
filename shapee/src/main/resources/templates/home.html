@@ -3,27 +3,12 @@
 <head>
     <title>Home</title>
 
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
-
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" th:href="@{/}"> Home <span class="sr-only">(current)</span> </a>
-            </div>
-        </div>
-    </nav>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
     <div class="container-fluid">
         <h2> Selamat datang di SHAPEE! </h2>
         <button class="btn btn-primary">
@@ -37,7 +22,7 @@
                     <div class="card-body">
                         <p>Fitur untuk menambah store</p>
                         <button class="btn btn-primary">
-                            <a href="@{/store/add}" style="color: white"> Tambah Store </a>
+                            <a th:href="@{/store/add}" style="color: white"> Tambah Store </a>
                         </button>
                     </div>
                 </div>
