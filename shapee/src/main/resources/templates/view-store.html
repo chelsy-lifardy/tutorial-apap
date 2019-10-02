@@ -21,10 +21,32 @@
 <td> <a th:href="@{/store/delete/} + ${store.id}"> Delete Store </a></td>
 <br>
 <br>
-<h2 th:text="'Daftar Produk: Toko '+ ${store.nama}"> </h2>
 <td> <a th:href="@{/product/add/} + ${store.id}"> Add Product </a></td>
-<br>
-
+<h2> Daftar Produk: </h2>
+<table>
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Id Product</th>
+        <th>Nama</th>
+        <th>Harga</th>
+        <th>Deskripsi</th>
+        <th>Stok</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product, iterationStatus : *{productList}"
+        th:style="${iterationStatus.even} ? 'color:blue'">
+        <td th:text="${iterationStatus.count}"></td>
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.nama}"></td>
+        <td th:if="${product.harga} >= 10000">Diatas 10k</td>
+        <td th:unless="${product.harga} >= 10000">Dibawah 10k</td>
+        <td th:text="${product.deskripsi}"></td>
+        <td th:text="${product.stok}"></td>
+    </tr>
+    </tbody>
+</table>
 <div th:each="product:  ${productList}">
     <h3 th:text="'ID Product: '+ ${product.id}"> </h3>
     <h3 th:text="'Nama: '+ ${product.nama}"> </h3>
