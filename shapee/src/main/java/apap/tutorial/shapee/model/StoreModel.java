@@ -1,23 +1,41 @@
 package apap.tutorial.shapee.model;
 
-public class StoreModel {
-    private String id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.List;
+
+@Entity
+@Table(name = "store")
+public class StoreModel implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    @Size(max = 10)
+    @Column(name = "nama", nullable = false)
     private String nama;
+
+    @NotNull
+    @Size(max = 30)
+    @Column(name = "keterangan", nullable = false)
     private String keterangan;
-    private int followers;
 
-    public StoreModel(String id, String nama, String keterangan, int followers) {
-        this.id = id;
-        this.nama = nama;
-        this.keterangan = keterangan;
-        this.followers = followers;
-    }
+    @NotNull
+    @Column(name = "followers")
+    private Integer followers;
 
-    public String getId() {
+    @OneToMany(mappedBy = "storeModel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ProductModel> listProduct;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,11 +55,19 @@ public class StoreModel {
         this.keterangan = keterangan;
     }
 
-    public int getFollowers() {
+    public Integer getFollowers() {
         return followers;
     }
 
-    public void setFollowers(int followers) {
+    public void setFollowers(Integer followers) {
         this.followers = followers;
+    }
+
+    public List<ProductModel> getListProduct() {
+        return listProduct;
+    }
+
+    public void setListProduct(List<ProductModel> listProduct) {
+        this.listProduct = listProduct;
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StoreInMemoryService implements StoreService {
@@ -25,12 +26,17 @@ public class StoreInMemoryService implements StoreService {
     }
 
     @Override
-    public StoreModel getStoreById(String idStore) {
-        //cek model yang id = idStore
-        for (StoreModel model : getStoreList()) {
-            if (model.getId().equals(idStore)) return model;
-        }
+    public Optional<StoreModel> getStoreById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public StoreModel changeStore(StoreModel storeModel) {
         return null;
     }
 
+    @Override
+    public void deleteStoreById(Long idStore) {
+        return;
+    }
 }

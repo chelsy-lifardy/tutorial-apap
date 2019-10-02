@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <title>Change Data Store</title>
+</head>
+<body>
+<h3> Change Data Store </h3>
+<form th:action="@{/store/change/{storeId}(storeId=${store.id})}" th:object="${store}" method="POST">
+    <input type="hidden" th:field="${store.id}" />
+    Nama Store: <br>
+    <input type = "text" name="nama" th:value="${store.nama}" />
+    <br>
+    Keterangan: <br>
+    <input type="text" name="keterangan" th:value="${store.keterangan}"/>
+    <br>
+
+    <br><br>
+    <button type="submit"> Submit </button>
+</form>
+</body>
+
+</html>
