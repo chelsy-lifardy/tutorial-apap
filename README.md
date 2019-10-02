@@ -117,7 +117,13 @@ Daftar list seluruh store beserta dengan ID Store, Nama Store, Keterangan, dan F
 
 2. Jelaskan yang anda pelajari dari latihan nomor 3, dan jelaskan tahapan bagaimana anda
    menyelesaikan latihan nomor 3
-   - tes
+
+   - Hal yg dipelajari adalah bagaimana controller merupakan perantara antara objek model dengan view tampilan html dan juga mengatur kapan objek model disimpan ke database.
+   - Tahapann menyelesaikan latihan nomor 3 saya menggunakan konsep seperti ini:
+     - tambah / hapus row dilakukan dengan memanggil postmapping pada controller
+     - controller akan menambahkan / menghapus product kosong sebagai dummy pada objek model store, sehingga akan menambah / menghapus kolom baris pada form
+     - ketika submit, karena row yang disubmit tidak kosong, maka product yang sudah di isi akan disimpan ke database
+
 3. Jelaskan perbedaan th:include dan th:replace
    - th:include = mengambil konten dari fragment dan memasukkannya ke dalam host tagnya sendiri
    - th:replace = mengganti host tag nya dengan fragment
