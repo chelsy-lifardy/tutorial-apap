@@ -105,3 +105,51 @@ Daftar list seluruh store beserta dengan ID Store, Nama Store, Keterangan, dan F
    - FetchType.LAZY: Pengambilan model relasi dari sebuah model dilakukan ketika melakukan pemanggilan fungsi getter dari atribut relasi tersebut.
    - FetchType.EAGER: Pengambilan model relasi dari sebuah model dilakukan bersamaan ketika mengambil model tersebut dari database.
    - CascadeType.ALL: Semua operasi yang dilakukan oleh model akan mempengaruhi model relasinya termasuk PERSIST, REMOVE, REFRESH, MERGE, dan DETACH
+
+## Tutorial 4
+
+1. Jelaskan yang anda pelajari dari melakukan latihan nomor 2, dan jelaskan tahapan bagaimana
+   anda menyelesaikan latihan nomor 2
+
+   - Pada latihan nomor 2 saya mempelajari cara penggunaan dynamic fragment dimana kita dapat menempatkan fragment berbeda beda sesuai dengan HTML. Cara untuk menyelesaikan tahapan nomor 2 adalah dengan menggunakan parameter.
+
+   - Saya menambahkan `th:fragment="navbar(page)"` di fragment.html dan implementasi di file html lain dengan `<nav th:replace="fragments/fragment :: navbar(page = ${page})"></nav>` yang nantinya parameter "page" akan direturn atributnya dari controller.
+
+2. Jelaskan yang anda pelajari dari latihan nomor 3, dan jelaskan tahapan bagaimana anda
+   menyelesaikan latihan nomor 3
+   - tes
+3. Jelaskan perbedaan th:include dan th:replace
+   - th:include = mengambil konten dari fragment dan memasukkannya ke dalam host tagnya sendiri
+   - th:replace = mengganti host tag nya dengan fragment
+
+```
+#contoh penggunaan th:include dan th:replace
+
+    <body>
+    ...
+    <div th:include="footer :: copy"></div>
+    <div th:replace="footer :: copy"></div>
+    </body>
+
+```
+
+```
+#hasil penggunaan th:include dan th:replace
+
+    <body>
+
+    ...
+
+    <div>
+        &copy; 2011 The Good Thymes Virtual Grocery
+    </div>
+    <footer>
+        &copy; 2011 The Good Thymes Virtual Grocery
+    </footer>
+
+    </body>
+```
+
+4. Jelaskan bagaimana penggunaan th:object beserta tujuannya
+   - th:object digunakan untuk menunjuk sebuah objek yang akan dimasukkan ke dalam form data yang dikirimkan.
+   - value untuk menggunakan atribut th:object di dalam form tags harus menggunakan variable expressions (${...}) yang diisi dengan model atribut. Yang artinya (${manusia}) dapat digunakan, sedangkan (\${manusia.nama}) tidak dapat digunakan.
