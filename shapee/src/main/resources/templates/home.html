@@ -2,22 +2,48 @@
 <html xmlns:th = "http://www.thymeleaf.org">
 <head>
     <title>Home</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<h2> Selamat datang di SHAPEE! </h2>
-<h3> Tambah Store</h3>
-<td> <a th:href = "@{/store/add}"> Tambah Store </a> </td>
+    <nav th:replace="fragments/fragment :: navbar(page = ${page})"></nav>
 
-
-<h3> Cari Store Berdasarkan ID </h3>
-<form th:action="@{/store/view}" method="GET">
-    Id Store: <br>
-    <input type="text" name="idStore"  />
-    <button type="submit"> Cari </button>
-</form>
-
-</br>
-<td>  <a  th:href="@{/store/view-all}"> View All </a> </td>
-
+    <div class="container-fluid">
+        <h2> Selamat datang di SHAPEE! </h2>
+        <button class="btn btn-primary">
+            <a th:href="@{/store/view-all}" style="color: white"> View All Store </a>
+        </button>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header"> Tambah Store</div>
+                    <div class="card-body">
+                        <p>Fitur untuk menambah store</p>
+                        <button class="btn btn-primary">
+                            <a th:href="@{/store/add}" style="color: white"> Tambah Store </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header"> Cari Store Berdasarkan ID </div>
+                    <div class="card-body">
+                        <form th:action="@{/store/view}" method="GET">
+                            <label for="idStore"> Id Store </label>
+                            <input type="text" name="idStore" id="idStore" class="form-control"/>
+                            <br>
+                            <button class="btn btn-primary" type="submit"> Cari </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

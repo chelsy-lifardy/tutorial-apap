@@ -1,26 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <title>Add Product</title>
+    <meta charset="UTF-8">
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<h3> Tambah Produk</h3>
-<form th:action="@{/product/add}" th:object="${product}" method="POST">
-    <input type="hidden" th:field="*{storeModel}" />
-    Nama: <br>
-    <input type = "text" name="nama" />
-    <br>
-    Deskripsi: <br>
-    <input type="text" name="deskripsi" />
-    <br>
-    Harga: <br>
-    <input type="number" name="harga" />
-    <br>
-    Stok: <br>
-    <input type="number" name="stok" />
-    <br>
-    <button type="submit"> Submit </button>
-</form>
-
+<nav th:replace="fragments/fragment :: navbar(page = ${page})"></nav>
+<div class="container-fluid">
+    <h3>Tambah Produk</h3>
+    <form class="form-group" th:action="@{/product/add}" th:object="${store}" method="POST">
+        <table>
+            <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Deskripsi</th>
+                <th>Harga</th>
+                <th>Stok</th>
+                <th>
+                    <button class="btn btn-primary" name="addRow">Add Row</button>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, status : *{listProduct}">
+                <input type="hidden" th:field="*{id}">
+                <td><input class="form-control" type="text" th:field="*{listProduct[__${status.index}__].nama}"/></td>
+                <td><input class="form-control" type="text" th:field="*{listProduct[__${status.index}__].deskripsi}"/>
+                </td>
+                <td><input class="form-control" type="number" th:field="*{listProduct[__${status.index}__].harga}"/>
+                </td>
+                <td><input class="form-control" type="number" th:field="*{listProduct[__${status.index}__].stok}"/>
+                </td>
+                <td>
+                    <button class="btn btn-danger" name="deleteRow" th:value="${status.index}">Hapus</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <button class="btn btn-primary" name="save">Submit</button>
+    </form>
+</div>
 </body>
 </html>
