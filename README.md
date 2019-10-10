@@ -194,3 +194,9 @@ Daftar list seluruh store beserta dengan ID Store, Nama Store, Keterangan, dan F
    - Dalam kondisi ideal, unit test seharusnya dibuat terlebih dahulu. Dengan membuat unit test terlebih dahulu, maka risiko terjadinya bugs akan berkurang karena sebelum kode dibuat, kita sudah memikirkan kasus-kasus yang mungkin terjadi. Jika dilakukan secara terbalik, maka kode yang kita buat memiliki risiko besar untuk terkena bugs di kemudian hari.
 4. Jelaskan mengapa pada latihan no 3, main class spring tidak diikutsertakan ke dalam perhitungan coverage? Apa saja yang dapat menyebabkan suatu class dapat di-exclude dari perhitungan code coverage.
    - Main class tidak termasuk ke dalam perhitungan coverage karena class ini tidak memiliki hubungan dengan unit test yang kita buat dan class ini hanya berfungsi sebagai `runner` dari aplikasi Shapee. Suatu class dapat kita exclude dari perhitungan coverage apabila class tersebut tidak berhubungan dengan unit test yang kita buat dan tidak berhubungan dengan MVC Spring.
+
+BEFORE TESTING IMPLEMENTATION
+<a href="https://i.imgur.com/9U1ltJ3r.png"><img src="https://i.imgur.com/9U1ltJ3r.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
+
+AFTER TESTING IMPLEMENTATION
+<a href="https://i.imgur.com/4kE3sqmr.png"><img src="https://i.imgur.com/4kE3sqmr.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
