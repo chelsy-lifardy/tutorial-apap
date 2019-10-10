@@ -105,9 +105,9 @@ public class StoreControllerTest {
     public void whenFindStoreByIdAccessedItShouldReturnSelectedStorePage() throws Exception {
         // Given
         StoreModel store = generateDummyProductModel(1);
-        when(storeService.getStoreById(1L)).thenReturn(Optional.of(store));
 
         // When
+        when(storeService.getStoreById(1L)).thenReturn(Optional.of(store));
         mockMvc.perform(get("/store/view?idStore=1")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         )
