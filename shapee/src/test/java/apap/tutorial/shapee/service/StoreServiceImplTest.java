@@ -26,6 +26,7 @@ public class StoreServiceImplTest {
         newStore.setNama("seiba");
         newStore.setKeterangan("keterangan");
         newStore.setFollowers(0);
+
         storeService.addStore(newStore);
         verify(storeDb, times(1)).save(newStore);
     }
@@ -36,6 +37,7 @@ public class StoreServiceImplTest {
         for (int loopTimes = 3 ; loopTimes > 0; loopTimes--) {
             allStoreInTheDatabase.add(new StoreModel());
         }
+
         when(storeService.getStoreList()).thenReturn(allStoreInTheDatabase);
         List<StoreModel> dataFromServiceCall = storeService.getStoreList();
         assertEquals(3, dataFromServiceCall.size());
@@ -49,10 +51,12 @@ public class StoreServiceImplTest {
         returnedData.setId(1L);
         returnedData.setFollowers(2);
         returnedData.setKeterangan("Dummy");
+
         when(storeService.getStoreById(1L)).thenReturn(Optional.of(returnedData) );
         Optional<StoreModel> dataFromServiceCall =storeService.getStoreById(1L);
         verify(storeDb, times(1)).findById(1L);
         assertTrue(dataFromServiceCall.isPresent());
+
         StoreModel dataFromOptional = dataFromServiceCall.get();
         assertEquals("Rose", dataFromOptional.getNama());
         assertEquals((Long) 1L, dataFromOptional.getId());
@@ -67,8 +71,10 @@ public class StoreServiceImplTest {
         updatedData.setId(1L);
         updatedData.setFollowers(2);
         updatedData.setKeterangan("Dummy");
+
         when(storeDb.findById(1L)).thenReturn(Optional.of(updatedData) );
         when(storeService.changeStore(updatedData)).thenReturn(updatedData);
+
         StoreModel dataFromServiceCall = storeService.changeStore(updatedData);
         assertEquals("Rose",dataFromServiceCall.getNama() );
         assertEquals((Long) 1L, dataFromServiceCall.getId());
@@ -83,6 +89,9 @@ public class StoreServiceImplTest {
         deleteData.setId(4L);
         deleteData.setFollowers(2);
         deleteData.setKeterangan("Dummy");
+
+        when(storeDb.findById(1L)).thenReturn(Optional.of(deleteData));
+        when(storeService.changeStore(deleteData)).thenReturn(deleteData);
         storeService.deleteStoreById(4L);
         assertEquals(false,storeDb.existsById(4L));
     }
