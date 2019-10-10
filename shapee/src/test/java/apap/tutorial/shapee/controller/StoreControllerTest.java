@@ -4,7 +4,6 @@ import apap.tutorial.shapee.model.StoreModel;
 import apap.tutorial.shapee.service.ProductService;
 import apap.tutorial.shapee.service.StoreService;
 import org.hamcrest.Matchers;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -100,4 +100,23 @@ public class StoreControllerTest {
                 .andExpect(MockMvcResultMatchers.view().name("add-store"))
                 .andExpect(model().attribute("nama", is(nama)));
     }
+
+    @Test
+    public void whenFindStoreByIdAccessedItShouldReturnSelectedStorePage() throws Exception {
+        // Given
+        StoreModel store = generateDummyProductModel(1);
+        when(storeService.getStoreById(1L)).thenReturn(Optional.of(store));
+
+        // When
+        mockMvc.perform(get("/store/view?idStore=1")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        )
+                // Then
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("view-store"))
+                .andExpect(model().attribute("store", is(store)));
+        verify(storeService, times(2)).getStoreById(1L);
+    }
+
+
 }
