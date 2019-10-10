@@ -9,8 +9,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -90,10 +90,8 @@ public class StoreServiceImplTest {
         deleteData.setFollowers(2);
         deleteData.setKeterangan("Dummy");
 
-        when(storeDb.findById(1L)).thenReturn(Optional.of(deleteData));
-        when(storeService.changeStore(deleteData)).thenReturn(deleteData);
         storeService.deleteStoreById(4L);
-        assertEquals(false,storeDb.existsById(4L));
+        assertFalse(storeDb.existsById(4L));
     }
 
 }
