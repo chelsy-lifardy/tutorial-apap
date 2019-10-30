@@ -1,7 +1,7 @@
 package apap.tutorial.shapee.controller;
 
-import apap.tutorial.shapee.model.ProductModel;
 import apap.tutorial.shapee.model.StoreModel;
+import apap.tutorial.shapee.model.ProductModel;
 import apap.tutorial.shapee.service.ProductService;
 import apap.tutorial.shapee.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;

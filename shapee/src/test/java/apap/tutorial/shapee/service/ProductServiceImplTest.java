@@ -1,7 +1,7 @@
 package apap.tutorial.shapee.service;
 
-import apap.tutorial.shapee.model.ProductModel;
 import apap.tutorial.shapee.model.StoreModel;
+import apap.tutorial.shapee.model.ProductModel;
 import apap.tutorial.shapee.repository.ProductDb;
 import org.junit.Test;
 import org.junit.runner.RunWith;

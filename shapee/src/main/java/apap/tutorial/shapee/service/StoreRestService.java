@@ -2,7 +2,6 @@ package apap.tutorial.shapee.service;
 
 import apap.tutorial.shapee.model.StoreModel;
 import apap.tutorial.shapee.rest.StoreDetail;
-import org.apache.catalina.Store;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
