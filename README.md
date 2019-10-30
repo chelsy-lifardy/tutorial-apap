@@ -200,3 +200,29 @@ BEFORE TESTING IMPLEMENTATION
 
 AFTER TESTING IMPLEMENTATION
 <a href="https://i.imgur.com/4kE3sqmr.png"><img src="https://i.imgur.com/4kE3sqmr.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
+
+### Tutorial 6
+
+1. Apa itu postman? Apa kegunaan dari postman?
+   - Postman merupakan suatu aplikasi yang berfungsi sebagai REST Client. Postman pada umumnya digunakan untuk melakukan uji coba terhadap REST API yang telah kita buat sebelumnya.
+2. Apa kegunaan dari annotation @JsonIgnoreProperties?
+
+   - @JsonIgnoreProperties digunakan untuk memberikan spesifikasi list atribut dari sebuah **class** yang akan diabaikan/ignore di dalam JSON serialization dan deserialization. Apabila tidak menggunakan annotation tersebut, maka akan terjadi error saat dilakukan serialization & deserialization apabila Java Object tidak memiliki field yang dimiliki oleh JSON.
+
+   Sebagai contoh:
+
+   ```
+   import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+   @JsonIgnoreProperties({"firstName", "lastName"})
+   public class PersonIgnoreProperties {
+       public long    personId = 0;
+       public String  firstName = null;
+       public String  lastName  = null;
+    }
+   ```
+
+   Pada contoh diatas, kedua atribut `firstName` dan `lastName` akan diabaikan di dalam JSON serialization dan deserialization karena atribut tersebut tercantum di dalam anotasi @JsonIgnoreProperties.
+
+3) Apa itu ResponseEntity dan apa kegunaannya?
+   - ResponseEntity merupakan salah satu class yang terdapat di Java. ResponseEntity merepresentasikan HTTP Response (status code, headers, dan body) secara keseluruhan sehingga kita dapat menggunakan ResponseEntity untuk memanipulasi HTTP Response dari request yang kita lakukan.
