@@ -204,12 +204,15 @@ AFTER TESTING IMPLEMENTATION
 ### Tutorial 6
 
 1. Apa itu postman? Apa kegunaan dari postman?
+
    - Postman merupakan suatu aplikasi yang berfungsi sebagai REST Client. Postman pada umumnya digunakan untuk melakukan uji coba terhadap REST API yang telah kita buat sebelumnya.
-2. Apa kegunaan dari annotation @JsonIgnoreProperties?
+   - Postman memiliki fitur-fitur lain yaitu Sharing Collection API for Documentation, Testing API, Realtime Collaboration Team, Monitoring API, dan Integration.
 
-   - @JsonIgnoreProperties digunakan untuk memberikan spesifikasi list atribut dari sebuah **class** yang akan diabaikan/ignore di dalam JSON serialization dan deserialization. Apabila tidak menggunakan annotation tersebut, maka akan terjadi error saat dilakukan serialization & deserialization apabila Java Object tidak memiliki field yang dimiliki oleh JSON.
+2. Apa kegunaan dari annotation `@JsonIgnoreProperties`?
 
-   Sebagai contoh:
+   - `@JsonIgnoreProperties` digunakan untuk memberikan spesifikasi list atribut dari sebuah **class** yang akan diabaikan ketika menjalankan serialization dan deserialization JSON. Apabila tidak menggunakan annotation tersebut, akan terjadi error saat menjalankan serialization dan deserialization ketika Java Object tidak memiliki field yang dimiliki oleh JSON.
+
+   - Berikut adalah contoh penggunaan `@JsonIgnoreProperties` :
 
    ```
    import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -222,7 +225,7 @@ AFTER TESTING IMPLEMENTATION
     }
    ```
 
-   Pada contoh diatas, kedua atribut `firstName` dan `lastName` akan diabaikan di dalam JSON serialization dan deserialization karena atribut tersebut tercantum di dalam anotasi @JsonIgnoreProperties.
+   - Pada contoh diatas, kedua atribut `firstName` dan `lastName` akan diabaikan di dalam JSON serialization dan deserialization karena atribut tersebut tercantum di dalam anotasi `@JsonIgnoreProperties`.
 
 3) Apa itu ResponseEntity dan apa kegunaannya?
-   - ResponseEntity merupakan salah satu class yang terdapat di Java. ResponseEntity merepresentasikan HTTP Response (status code, headers, dan body) secara keseluruhan sehingga kita dapat menggunakan ResponseEntity untuk memanipulasi HTTP Response dari request yang kita lakukan.
+   - ResponseEntity merupakan sebuaj class yang merepresentasikan HTTP Response, termasuk status code, headers, dan body secara keseluruhan. ResponseEntity dapay digunakan untuk memanipulasi HTTP Response dari request yang kita lakukan.
