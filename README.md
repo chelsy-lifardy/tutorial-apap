@@ -159,3 +159,44 @@ Daftar list seluruh store beserta dengan ID Store, Nama Store, Keterangan, dan F
 4. Jelaskan bagaimana penggunaan th:object beserta tujuannya
    - th:object digunakan untuk menunjuk sebuah objek yang akan dimasukkan ke dalam form data yang dikirimkan.
    - value untuk menggunakan atribut th:object di dalam form tags harus menggunakan variable expressions (${...}) yang diisi dengan model atribut. Yang artinya (${manusia}) dapat digunakan, sedangkan (\${manusia.nama}) tidak dapat digunakan.
+
+### Tutorial 5
+
+1. Jelaskan bagian mana saja dari test yang dibuat pada latihan no 2 adalah given, when, dan and then.
+
+   ```
+   @Test
+    public void whenFindStoreByIdAccessedItShouldReturnSelectedStorePage() throws Exception {
+        // Given
+        StoreModel store = generateDummyProductModel(1);
+
+        // When
+        when(storeService.getStoreById(1L)).thenReturn(Optional.of(store));
+        mockMvc.perform(get("/store/view?idStore=1")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        )
+                // Then
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("view-store"))
+                .andExpect(model().attribute("store", is(store)));
+        verify(storeService, times(2)).getStoreById(1L);
+    }
+   ```
+
+   - `Given`: memberikan inisiasi objek model store
+   - `When`: melakukan pemanggilan method view store
+   - `Then`: mencocokan expected output dengan output yang sebenarnya
+
+2. Jelaskan perbedaan `line coverage` dan `logic coverage`.
+   - Line coverage: Mengukur berapa persen baris kode yang dijalankan dalam suatu test.
+   - Logic coverage: Mengukur berapa persen kode yang di-test yang sesuai dengan logic program tersebut.
+3. Pada keadaan ideal, apa yang seharusnya dibuat terlebih dahulu, kode atau unit test? Mengapa seperti itu? Apa akibatnya jika urutannya dibalik, adakah risiko tak terlihat yang mungkin terjadi?
+   - Dalam kondisi ideal, unit test seharusnya dibuat terlebih dahulu. Dengan membuat unit test terlebih dahulu, maka risiko terjadinya bugs akan berkurang karena sebelum kode dibuat, kita sudah memikirkan kasus-kasus yang mungkin terjadi. Jika dilakukan secara terbalik, maka kode yang kita buat memiliki risiko besar untuk terkena bugs di kemudian hari.
+4. Jelaskan mengapa pada latihan no 3, main class spring tidak diikutsertakan ke dalam perhitungan coverage? Apa saja yang dapat menyebabkan suatu class dapat di-exclude dari perhitungan code coverage.
+   - Main class tidak termasuk ke dalam perhitungan coverage karena class ini tidak memiliki hubungan dengan unit test yang kita buat dan class ini hanya berfungsi sebagai `runner` dari aplikasi Shapee. Suatu class dapat kita exclude dari perhitungan coverage apabila class tersebut tidak berhubungan dengan unit test yang kita buat dan tidak berhubungan dengan MVC Spring.
+
+BEFORE TESTING IMPLEMENTATION
+<a href="https://i.imgur.com/9U1ltJ3r.png"><img src="https://i.imgur.com/9U1ltJ3r.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
+
+AFTER TESTING IMPLEMENTATION
+<a href="https://i.imgur.com/4kE3sqmr.png"><img src="https://i.imgur.com/4kE3sqmr.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
