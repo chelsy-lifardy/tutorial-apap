@@ -1,13 +1,16 @@
 package apap.tutorial.shapee.restcontroller;
 
 import apap.tutorial.shapee.model.StoreModel;
+import apap.tutorial.shapee.rest.Setting;
 import apap.tutorial.shapee.rest.StoreDetail;
 import apap.tutorial.shapee.service.StoreRestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
@@ -18,6 +21,9 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("/api/v1")
 public class StoreRestController {
+
+    @Autowired
+    RestTemplate restTemplate;
 
     @Autowired
     private StoreRestServiceImpl storeRestServiceImpl;
@@ -67,6 +73,18 @@ public class StoreRestController {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "ID Store " + idStore + "Not Found");
         }
+    }
+
+    @GetMapping(value = "/store")
+    private String getStore(
+            @RequestParam String branch
+    ) { String keywordUrl =  Setting.url + branch;
+        return restTemplate.getForObject(keywordUrl, String.class);
+    }
+
+    @Bean
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
     }
 
     @GetMapping(value = "/stores")

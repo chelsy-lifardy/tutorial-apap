@@ -23,8 +23,8 @@ public class ProductRestController {
 
     @Autowired
     private ProductRestServiceImpl productRestServiceImpl;
-    @Autowired
-    RestTemplate restTemplate;
+//    @Autowired
+//    RestTemplate restTemplate;
 
     //all product
     @GetMapping(value = "/products")
@@ -79,17 +79,18 @@ public class ProductRestController {
                     HttpStatus.NOT_FOUND, "ID Product " + idProduct + "Not Found");
         }
     }
-
-    @GetMapping(value = "/product/keywords={keywords}")
-    private String getProduct(
-            @PathVariable(value = "keywords") String keywords
-    ) { String keywordUrl =  Setting.etsyUrl + "&&keywords=" + keywords;
-        return restTemplate.getForObject(keywordUrl, String.class);
-    }
-
-    @Bean
-    public RestTemplate getRestTemplate() {
-        return new RestTemplate();
-    }
+//
+//    @GetMapping(value = "/product/keywords={keywords}")
+//    private String getProduct(
+//            @PathVariable(value = "keywords") String keywords
+//    ) { String keywordUrl =  Setting.etsyUrl + "&&keywords=" + keywords;
+//        return restTemplate.getForObject(keywordUrl, String.class);
+//    }
+//
+//
+//    @Bean
+//    public RestTemplate getRestTemplate() {
+//        return new RestTemplate();
+//    }
 
 }
