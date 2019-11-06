@@ -1,5 +1,7 @@
 package apap.tutorial.shapee.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,6 +31,7 @@ public class StoreModel implements Serializable {
     private Integer followers;
 
     @OneToMany(mappedBy = "storeModel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<ProductModel> listProduct;
 
     public Long getId() {

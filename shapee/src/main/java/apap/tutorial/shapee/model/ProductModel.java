@@ -1,6 +1,7 @@
 package apap.tutorial.shapee.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -40,6 +41,7 @@ public class ProductModel {
     @JoinColumn(name="storeid", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
+    @JsonManagedReference
     private StoreModel storeModel;
 
     public Long getId() {
