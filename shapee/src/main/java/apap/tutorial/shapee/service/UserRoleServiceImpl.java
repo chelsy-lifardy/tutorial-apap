@@ -5,6 +5,7 @@ import apap.tutorial.shapee.repository.UserRoleDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.regex.Pattern;
 
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
@@ -23,6 +24,24 @@ public class UserRoleServiceImpl implements UserRoleService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword  = passwordEncoder.encode(password);
         return hashedPassword;
+    }
+
+    @Override
+    public UserModel getByUsername(String username) {
+        return userRoleDb.findByUsername(username);
+    }
+
+    @Override
+    public void updatePassword(UserModel user, String newPassword) {
+        String password = encrypt(newPassword);
+        user.setPassword(password);
+
+        userRoleDb.save(user);
+    }
+
+    @Override
+    public boolean validatePassword(String password) {
+        return password.length() >= 8 && Pattern.compile("[0-9]").matcher(password).find() && Pattern.compile("[a-zA-Z]").matcher(password).find();
     }
 
 }
