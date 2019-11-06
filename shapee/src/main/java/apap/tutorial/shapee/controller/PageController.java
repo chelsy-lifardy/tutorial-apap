@@ -24,6 +24,8 @@ public class PageController {
 
     @RequestMapping("/")
     public String home(Model model) {
+        UserModel user = userRoleService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        model.addAttribute("role", user.getRole().getRole());
         model.addAttribute("listRole", roleService.findAll());
         return "home";
     }

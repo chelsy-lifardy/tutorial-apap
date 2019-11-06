@@ -12,11 +12,12 @@
 <div class="container-fluid">
     <h2> Selamat datang di SHAPEE! </h2>
     <h4 th:text=" 'Hello '+ ${#httpServletRequest.remoteUser} + ' !'">Login as</h4>
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" th:if="${role} == 'MERCHANT'">
         <a th:href="@{/store/view-all}" style="color: white"> View All Store </a>
     </button>
+    <div th:unless="${role} == 'MERCHANT'"></div>
     <hr>
-    <div class="row">
+    <div class="row" th:if="${role} == 'ADMIN'">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header"> Tambah User Baru</div>
@@ -48,6 +49,7 @@
             </div>
         </div>
     </div>
+    <div th:unless="${role} == 'ADMIN'"></div>
     <br>
     <div class="row">
         <div class="col-md-6">
