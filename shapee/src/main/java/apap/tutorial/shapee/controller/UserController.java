@@ -20,7 +20,13 @@ public class UserController {
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     private String addUserSubmit(@ModelAttribute UserModel user, Model model) {
-        userRoleService.addUser(user);
+        if (userRoleService.validatePassword(user.getPassword())) {
+            userRoleService.addUser(user);
+            model.addAttribute("errorState", "Data user baru berhasil disimpan");
+
+        } else {
+            model.addAttribute("errorState","Password harus terdiri atas angka dan huruf serta minimal memiliki 8 karakter");
+        }
         model.addAttribute("listRole", roleService.findAll());
         return "home";
     }
