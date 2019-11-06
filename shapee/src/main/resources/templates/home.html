@@ -11,10 +11,36 @@
 
     <div class="container-fluid">
         <h2> Selamat datang di SHAPEE! </h2>
+        <h2 th:text=" 'Hello '+ ${#httpServletRequest.remoteUser} + ' !'">Login as</h2>
         <button class="btn btn-primary">
             <a th:href="@{/store/view-all}" style="color: white"> View All Store </a>
         </button>
         <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header"> Tambah User Baru</div>
+                    <div class="card-body">
+                        <form th:action="@{/user/addUser}" method="POST">
+                            <label>User Name</label>
+                            <input type="text" name="username" class="form-control">
+
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control">
+
+                            <label>Role</label>
+                            <select name="role" class="form-control">
+                                <option selected value=""> -- Pilih Role -- </option>
+                                <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.id}" th:text="${roleAvailable.role}"></option>
+                            </select>
+
+                            <br>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
