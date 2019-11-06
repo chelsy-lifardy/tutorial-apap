@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Home</title>
 
@@ -7,69 +7,78 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <nav th:replace="fragments/fragment :: navbar(page = ${page})"></nav>
+<nav th:replace="fragments/fragment :: navbar(page = ${page})"></nav>
 
-    <div class="container-fluid">
-        <h2> Selamat datang di SHAPEE! </h2>
-        <h2 th:text=" 'Hello '+ ${#httpServletRequest.remoteUser} + ' !'">Login as</h2>
-        <button class="btn btn-primary">
-            <a th:href="@{/store/view-all}" style="color: white"> View All Store </a>
-        </button>
-        <hr>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header"> Tambah User Baru</div>
-                    <div class="card-body">
-                        <form th:action="@{/user/addUser}" method="POST">
-                            <label>User Name</label>
-                            <input type="text" name="username" class="form-control">
-
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control">
-
-                            <label>Role</label>
-                            <select name="role" class="form-control">
-                                <option selected value=""> -- Pilih Role -- </option>
-                                <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.id}" th:text="${roleAvailable.role}"></option>
-                            </select>
-
-                            <br>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header"> Tambah Store</div>
-                    <div class="card-body">
-                        <p>Fitur untuk menambah store</p>
-                        <button class="btn btn-primary">
-                            <a th:href="@{/store/add}" style="color: white"> Tambah Store </a>
+<div class="container-fluid">
+    <h2> Selamat datang di SHAPEE! </h2>
+    <h4 th:text=" 'Hello '+ ${#httpServletRequest.remoteUser} + ' !'">Login as</h4>
+    <button class="btn btn-primary">
+        <a th:href="@{/store/view-all}" style="color: white"> View All Store </a>
+    </button>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header"> Tambah User Baru</div>
+                <div class="card-body">
+                    <p style="color: darkred" th:text="${errorState}"></p>
+                    <div class="alert alert-info d-flex justify-content-center alert-dismissible fade show" role="alert"> Hanya role '
+                        <strong>ADMIN</strong>' yang dapat menambah user baru
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header"> Cari Store Berdasarkan ID </div>
-                    <div class="card-body">
-                        <form th:action="@{/store/view}" method="GET">
-                            <label for="idStore"> Id Store </label>
-                            <input type="text" name="idStore" id="idStore" class="form-control"/>
-                            <br>
-                            <button class="btn btn-primary" type="submit"> Cari </button>
-                        </form>
-                    </div>
+                    <form th:action="@{/user/addUser}" method="POST">
+                        <label>User Name</label>
+                        <input type="text" name="username" class="form-control" required>
+
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" required>
+
+                        <label>Role</label>
+                        <select name="role" class="form-control" required>
+                            <option selected value=""> -- Pilih Role --</option>
+                            <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.id}"
+                                    th:text="${roleAvailable.role}"></option>
+                        </select>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header"> Tambah Store</div>
+                <div class="card-body">
+                    <p>Fitur untuk menambah store</p>
+                    <button class="btn btn-primary">
+                        <a th:href="@{/store/add}" style="color: white"> Tambah Store </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header"> Cari Store Berdasarkan ID</div>
+                <div class="card-body">
+                    <form th:action="@{/store/view}" method="GET">
+                        <label for="idStore"> Id Store </label>
+                        <input type="text" name="idStore" id="idStore" class="form-control"/>
+                        <br>
+                        <button class="btn btn-primary" type="submit"> Cari</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
 </body>
 </html>
