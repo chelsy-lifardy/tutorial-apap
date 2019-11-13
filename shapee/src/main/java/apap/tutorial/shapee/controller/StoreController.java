@@ -22,11 +22,11 @@ public class StoreController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping("/")
-    private String home(Model model) {
-        model.addAttribute("page", "Home");
-        return "home";
-    }
+//    @RequestMapping("/")
+//    private String home(Model model) {
+//        model.addAttribute("page", "Home");
+//        return "home";
+//    }
 
     @RequestMapping(value = "/store/add", method = RequestMethod.GET)
     public String addStoreFormPage(Model model) {

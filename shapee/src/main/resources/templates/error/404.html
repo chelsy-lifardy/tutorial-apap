@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <title>404 Not Found</title>
+    <meta charset="UTF-8">
+    <object th:include="fragments/fragment :: header(${title})" th:remove="tag"></object>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-
 <body>
-    <nav th:replace="fragments/fragment :: navbar(page = 'error')"></nav>
-    <h2>Halaman tidak ditemukan</h2>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid">
+    <div class="alert alert-danger d-flex justify-content-center"> Error 404: Halaman tidak ditemukan! </div>
+</div>
 </body>
 </html>

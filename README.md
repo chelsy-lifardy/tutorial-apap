@@ -229,3 +229,39 @@ AFTER TESTING IMPLEMENTATION
 
 3) Apa itu ResponseEntity dan apa kegunaannya?
    - ResponseEntity merupakan sebuaj class yang merepresentasikan HTTP Response, termasuk status code, headers, dan body secara keseluruhan. ResponseEntity dapay digunakan untuk memanipulasi HTTP Response dari request yang kita lakukan.
+
+### Tutorial 7
+
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode
+   yang telah anda buat) konsep tersebut diimplementasi?
+
+   - Otentikasi = Suatu proses melakukan verifikasi krendensial seseorang, biasanya dapat berupa username ataupun password. Pada tutorial kali ini, otentikasi dilakukan pada bagian WebConfig.
+
+   ```
+   public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
+    }
+   ```
+
+   - Otorisasi = Merupakan proses pengecekan yang dilakukan setelah dilakukan otentikasi, tujuannya adalah untuk memberikan akses kepada seseorang untuk melakukan manipulasi terhadap sesuatu.
+
+   ```
+   http
+       .authorizeRequests()
+       .antMatchers("/css/**").permitAll()
+       .antMatchers("/jss/**").permitAll()
+       .antMatchers("/store/**").hasAnyAuthority("MERCHANT")
+       .antMatchers("/user/addUser/**").hasAnyAuthority("ADMIN")
+   ```
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerjanya!
+
+   - BCryptPasswordEncoder digunakana unntuk melakukan hashing terhhadap password yang akan disimpan ke dalam database. Cara kerjanya adalahh setelah user memasukan data username dan password kemudian ketika user ingin menyimpan data tersebut maka password akan di hashing terlebih dahulu oleh BCryptPasswordEncoder. Kemudian hashing password juga akan dilakukan ketika login, password akan di enkripsi dan dilakukan pencocokan denga database.
+
+3. Jelaskan secara singkat apa itu UUID dan mengapa kita memakai UUID di UserModel.java?
+
+   - UUID adalah suatu hex digit yang terdiri dari 32 karakter acak. UUID digunakan dalam class UserModel dengan tujuan untuk menambah keamanan user karena user id akan generate dengan 32 karakter acak sehingga tidak mudah untuk ditebak olehh hacker.
+
+4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut
+   padahal kita sudah memiliki class UserRoleServiceImpl.java?
+   - UserDetailServiceImpl akan mengembalikan kredensial user saat login. Class ini bertujuan untuk melakukan otorisasi terhadap hak akses user berdasarkan role yang telah ditetapkan.
