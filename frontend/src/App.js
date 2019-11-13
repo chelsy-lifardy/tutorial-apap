@@ -51,12 +51,11 @@ export default class App extends React.Component {
           <small>Class-based</small>
         </h1>
         <div className="d-flex justify-content-center align-items-center">
-          {/* <h4 className="bas-margin">Normal</h4> */}
           <label className="switch">
             <input type="checkbox" onClick={this.toggleButton} />
             <span className="slider round"></span>
           </label>
-          <h4 className="fav-margin">My Favorites</h4>
+          <h4 className="fav-margin">My Favourites</h4>
         </div>
         <div className="container pt-3">
           <div className="row">
