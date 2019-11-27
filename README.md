@@ -265,3 +265,106 @@ AFTER TESTING IMPLEMENTATION
 4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut
    padahal kita sudah memiliki class UserRoleServiceImpl.java?
    - UserDetailServiceImpl akan mengembalikan kredensial user saat login. Class ini bertujuan untuk melakukan otorisasi terhadap hak akses user berdasarkan role yang telah ditetapkan.
+
+### Tutorial 8
+
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.
+
+   - Pada latihan <strong> pertama </strong>, saya menambahkan validasi menggunakan if/else dengan mengecek apakah checked bernilai true. Jika true, maka checkbox akan ditampilkan
+
+   ```
+   <input
+         type={checked ? "checkbox" : "hidden"}
+         checked={checked}
+         onChange={handleChange}
+   />
+   ```
+
+   - Sebelumnya sudah terdapat handleItemClick yang memberikan Item sebuah function untuk menambah dan menghapus favorit. Untuk menjalankan latihan <strong> kedua </strong> ini, saya mengubah handleItemClick menjadi handleFavClick, serta menambah 1 fungsi yang serupa yaitu handleItemClick, namun tidak diberikan akses untuk menghapus dengan menghilangkan potongan kode `else newItems.splice(targetInd, 1);`
+
+   ```
+   handleFavClick = item => {
+       const newItems = [...this.state.favItems];
+       const newItem = { ...item };
+
+       const targetInd = newItems.findIndex(it => it.id === newItem.id);
+       if (targetInd < 0) newItems.push(newItem);
+       else newItems.splice(targetInd, 1);
+
+       this.setState({ favItems: newItems });
+   };
+
+   handleItemClick = item => {
+       const newItems = [...this.state.favItems];
+       const newItem = { ...item };
+
+       const targetInd = newItems.findIndex(it => it.id === newItem.id);
+       if (targetInd < 0) newItems.push(newItem);
+
+       this.setState({ favItems: newItems });
+   };
+   ```
+
+   - Kemudian, saya mengganti onItemClick yang sebelumnya adalah `this.handleItemClick` menjadi `onItemClick={this.handleFavClick}` pada elemen My Favorit
+
+   - Pada latihan <strong> ketiga </strong>, saya menambahkan toggle button dengan membuat state terlebih dahulu yang memiliki nilai default `false`.
+
+   ```
+   state = {
+       favItems: [],
+       textDisplay: false
+    };
+   ```
+
+   - kemudian, saya membuat function toggleButton yang memberikan nilai boolean berkebalikan dari state yang masuk ke function ini untuk menjalankan on/off dari toggle button.
+
+   ```
+   toggleButton = () => {
+       this.setState(currentState => ({
+           textDisplay: !currentState.textDisplay
+       }));
+    };
+   ```
+
+   - setelah itu, menampilkan toggle button dengan memberikannya fungsi untuk menjalankan toggleButton()
+
+   ```
+    <label className="switch">
+        <input type="checkbox" onClick={this.toggleButton}/>
+        <span className="slider round"></span>
+    </label>
+   ```
+
+   - apabila toggle bernilai true maka akan menampilkan favourites, namun, apabila bernilai false, tidak akan menampilkan favourites
+
+   ```
+   <div className={`col-sm \${textDisplay ? "d-block" : "d-none"}`}>
+   ```
+
+   - Pada latihan <strong> keempat </strong>, saya melakukan pengecekan apakah list bernilai 0. Apabila tidak bernilai 0, maka menampilkan list favourites. Namun jika bernilai 0, akan menampilkan empty states
+
+   ```
+   {items.length !== 0 ? (
+        <div className="list-group">
+            {items.map(item => (
+            <Item key={item.id} item={item} onChange={onItemClick} />
+            ))}
+        </div>
+    ) : (
+    <EmptyState />
+    )}
+   ```
+
+   - berikut adalah kode empty states
+
+   ```
+   import React from "react";
+    export default function EmptyState() {
+        return (
+            <>
+                <h3>Belum ada item yang dipilih</h3>
+                <p>Klik salah satu item di daftar Menu/Produk</p>
+            </>
+        );
+    }
+   ```
