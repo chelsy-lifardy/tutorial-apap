@@ -1,0 +1,38 @@
+.Stores {
+    margin-top: 2%;
+}
+
+.Title {
+    widows: 50%;
+    padding-top: 5%;
+    margin: auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Reguler', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
+}
+
+.AddStoreButton {
+    background-color: #c6e377;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #8186d5;
+    color: black;
+    font-family: inherit;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 2px #36622b;
+}
+
+.AddStoreButton:hover,
+.AddStoreButton:active {
+    background-color: #a0db41;
+    border: 1px solid #966909;
+    color: black;
+    font-weight: bold;
+}
+
+.ButtonLayout {
+    width: 50%;
+    margin: auto;
+    justify-items: right;
+    padding-top: 20px;
+}
