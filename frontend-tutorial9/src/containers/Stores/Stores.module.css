@@ -4,6 +4,7 @@
 
 .Title {
     widows: 50%;
+    text-align: center;
     padding-top: 5%;
     margin: auto;
     font-family: 'Lucida Sans', 'Lucida Sans Reguler', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

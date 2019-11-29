@@ -5,19 +5,24 @@ import classes from "./Stores.module.css";
 import axios from "../../axios-store.js";
 import Modal from "../../components/UI/Modal/Modal";
 import Button from "../../components/UI/Button/Button";
+import SearchBar from "../../components/UI/SearchBar/SearchBar";
+import Pagination from "../../components/UI/Pagination/Pagination";
 
 class Stores extends Component {
   constructor(props) {
     super(props);
     this.state = {
       stores: [],
+      searchedStores: [],
       isCreate: false,
       isEdit: false,
       isLoading: true,
       id: "",
       nama: "",
       keterangan: "",
-      followers: ""
+      followers: "",
+      totalPage: "",
+      currentPage: 1
     };
   }
 
@@ -34,7 +39,10 @@ class Stores extends Component {
       });
     }
     this.setState({
-      stores: fetchedStores
+      stores: fetchedStores,
+      searchedStores: fetchedStores.slice(0, 5),
+      totalPage: Math.ceil(fetchedStores.length / 5),
+      currentPage: 1
     });
   };
 
@@ -77,6 +85,12 @@ class Stores extends Component {
     this.setState({ isLoading: true });
     this.addStore();
     this.canceledHandler();
+
+    this.setState({
+      nama: "",
+      keterangan: "",
+      followers: ""
+    });
   };
 
   async editStore() {
@@ -101,6 +115,27 @@ class Stores extends Component {
     await axios.delete(`/store/${storeId}`);
     await this.loadStores();
   }
+
+  search = text => {
+    if (text === "") {
+      this.setState({ searchedStores: this.state.stores });
+    } else {
+      const filteredStores = this.state.stores.filter(store => {
+        return store.nama.toLowerCase().indexOf(text.toLowerCase()) !== -1;
+      });
+
+      this.setState({ searchedStores: filteredStores });
+    }
+  };
+
+  changePage = pageNum => {
+    const selectedPage = this.state.stores.slice(
+      pageNum !== 1 ? pageNum * 5 - 5 : 0,
+      pageNum !== 1 ? pageNum * 5 : 5
+    );
+
+    this.setState({ searchedStores: selectedPage, currentPage: pageNum });
+  };
 
   renderForm() {
     const { isEdit } = this.state;
@@ -156,6 +191,7 @@ class Stores extends Component {
         >
           {this.renderForm()}
         </Modal>
+        <SearchBar onChange={this.search}>Search here</SearchBar>
         <div className={classes.Title}>All Stores</div>
         <div className={classes.ButtonLayout}>
           <button
@@ -166,8 +202,8 @@ class Stores extends Component {
           </button>
         </div>
         <div className={classes.Stores}>
-          {this.state.stores &&
-            this.state.stores.map(store => (
+          {this.state.searchedStores &&
+            this.state.searchedStores.map(store => (
               <Store
                 key={store.id}
                 nama={store.nama}
@@ -178,6 +214,11 @@ class Stores extends Component {
               />
             ))}
         </div>
+        <Pagination
+          length={this.state.totalPage}
+          changePage={this.changePage}
+          active={this.state.currentPage}
+        ></Pagination>
       </React.Fragment>
     );
   }
