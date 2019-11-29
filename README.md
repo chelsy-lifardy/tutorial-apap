@@ -368,3 +368,60 @@ AFTER TESTING IMPLEMENTATION
         );
     }
    ```
+
+### Tutorial 9
+
+1. Ceritakan langkah-langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah-langkah tersebut?
+
+   - Saya memberikan property `value` pada input di method renderForm. Kemudian dilakukan setState dengan value "" untuk nama, keterangan, dan followers setelah submit form dilakukan. Sehingga, value pada input akan selalu menjadi kosong setelah form di submit.
+
+   ```
+   constructor(props) {
+   super(props);
+   this.state = {
+     stores: [],
+     searchedStores: [],
+     isCreate: false,
+     isEdit: false,
+     isLoading: true,
+     id: "",
+     nama: "",
+     keterangan: "",
+     followers: "",
+     totalPage: "",
+     currentPage: 1
+   };
+   }
+   ```
+
+   ```
+   submitAddStoreHandler = event => {
+    event.preventDefault();
+    this.setState({ isLoading: true });
+    this.addStore();
+    this.canceledHandler();
+
+    this.setState({
+      nama: "",
+      keterangan: "",
+      followers: ""
+    });
+   };
+   ```
+
+2. Jelaskan fungsi dari async dan await!
+
+   - `async`: Menandakan bahwa fungsi yang dibuat bersifat non-blocking (asynchronous).
+   - `await`: Cara untuk menghandle proses async yang sedang berjalan. await membuat fungsi yang sedang dieksekusi harus berlangsung hingga selesai terlebih dahulu sebbelum code setelah await akan dijalankan.
+
+3. Masukkan jawaban dari TODO pada Component Lifecycle pada pertanyaan ini
+
+   - ...
+
+4. Jelaskan fungsi dari `componentDidMount`, `shouldComponentUpdate`, `componentDidUpdate`, `componentWillReceiveProps`, `componentWillUnmount`.
+
+   - `componentDidMount`: Fungsi ini dijalankan setelah component telah selesai dirender untuk melakukan fetching data.
+   - `shouldComponentUpdate`: Fungsi ini dijalankan sebelum component melakukan render ulang terhadap perubahan yang terjadi. Apabila mengembalikan nilai true, component akan dirender ulang, dan sebaliknya, component tidak dirender ulang. Fungsi ini memiliki 2 parameter, yaitu `nextProps` dan `nextState`.
+   - `componentDidUpdate`: Fungsi ini dijalankan setelah component yang di render ulang (diupdate) sudah selesai di render. componentDidUpdate digunakan saat melakukan interaksi dengan environment non-React seperti HTTP Request. Fungsi ini menerima 2 parameter, yaitu `prevProps` dan `prevState`.
+   - `componentWillReceiveProps`: Fungsi ini dijalankan sebelum component melakukan apa saja terhadap props yang baru mengalami pembaruan (update). Dengan menggunakan metode ini, kita dapat membandingkan props yang ada dengan yang baru dan memeriksa apakah terdapat perubahan terhadap props tersebut.
+   - `componentWillUnmount`: Fungsi ini dijalankan sebelum component di hapus dari DOM. Biasanya pada lifecycle ini, kita akan melakukan cleanup seperti membatalkan network request dan menghilangkan event listener.
