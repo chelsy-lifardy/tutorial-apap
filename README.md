@@ -416,9 +416,21 @@ AFTER TESTING IMPLEMENTATION
 
 3. Masukkan jawaban dari TODO pada Component Lifecycle pada pertanyaan ini
 
-   - ...
+   <a href="https://i.imgur.com/8xldGn2r.png"><img src="https://i.imgur.com/8xldGn2r.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
 
-4. Jelaskan fungsi dari `componentDidMount`, `shouldComponentUpdate`, `componentDidUpdate`, `componentWillReceiveProps`, `componentWillUnmount`.
+   <a href="https://i.imgur.com/RsO3qxP.png"><img src="https://i.imgur.com/RsO3qxP.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
+
+   <a href="https://i.imgur.com/bX2uZpsr.png"><img src="https://i.imgur.com/bX2uZpsr.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
+
+   <a href="https://i.imgur.com/3OJTwqYr.png"><img src="https://i.imgur.com/3OJTwqYr.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
+
+   <a href="https://i.imgur.com/WforNTAr.png"><img src="https://i.imgur.com/WforNTAr.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
+
+   <a href="https://i.imgur.com/bY0dPQfr.png"><img src="https://i.imgur.com/bY0dPQfr.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
+
+   <a href="https://i.imgur.com/q8EEGtYr.png"><img src="https://i.imgur.com/q8EEGtYr.png" alt="Screen-Shot-2019-09-18-at-17-32-38" border="0"></a>
+
+4) Jelaskan fungsi dari `componentDidMount`, `shouldComponentUpdate`, `componentDidUpdate`, `componentWillReceiveProps`, `componentWillUnmount`.
 
    - `componentDidMount`: Fungsi ini dijalankan setelah component telah selesai dirender untuk melakukan fetching data.
    - `shouldComponentUpdate`: Fungsi ini dijalankan sebelum component melakukan render ulang terhadap perubahan yang terjadi. Apabila mengembalikan nilai true, component akan dirender ulang, dan sebaliknya, component tidak dirender ulang. Fungsi ini memiliki 2 parameter, yaitu `nextProps` dan `nextState`.
